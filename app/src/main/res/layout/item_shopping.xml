@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="4dp"
+    app:cardCornerRadius="10dp" app:cardElevation="2dp">
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="14dp" android:gravity="center_vertical">
+
+        <LinearLayout android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" android:orientation="vertical">
+
+            <LinearLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="horizontal">
+                <TextView android:id="@+id/tvItemName"
+                    android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="Item"
+                    android:textColor="#212121" android:textStyle="bold" android:textSize="15sp"/>
+                <TextView android:id="@+id/tvAmount"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Rs.0" android:textColor="#FF7043"
+                    android:textStyle="bold" android:textSize="15sp"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" android:layout_marginTop="4dp">
+                <TextView android:id="@+id/tvCategory"
+                    android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="Category"
+                    android:textColor="#757575" android:textSize="12sp"/>
+                <TextView android:id="@+id/tvBadge"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Planned" android:textSize="12sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <TextView android:id="@+id/tvDate"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="date" android:textColor="#BDBDBD"
+                android:textSize="11sp" android:layout_marginTop="4dp"/>
+        </LinearLayout>
+
+        <ImageButton android:id="@+id/btnDelete"
+            android:layout_width="32dp" android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_delete"
+            android:contentDescription="Delete"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

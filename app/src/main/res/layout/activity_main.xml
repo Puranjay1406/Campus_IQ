@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F3F4F6">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#5C6BC0"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:paddingBottom="36dp">
+
+            <TextView
+                android:id="@+id/tvGreeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello, Student!"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Track your campus life"
+                android:textColor="#C5CAE9"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- Budget Card (overlapping header) -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="-20dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvBudgetLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Budget: Rs.5000"
+                    android:textColor="#757575"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvTotalSpent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Spent: Rs.0"
+                    android:textColor="#212121"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="4dp"/>
+
+                <ProgressBar
+                    android:id="@+id/progressBudget"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="10dp"
+                    android:max="100"
+                    android:progress="0"
+                    android:progressTint="#5C6BC0" />
+
+                <TextView
+                    android:id="@+id/tvRemaining"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rs.5000 remaining"
+                    android:textColor="#4CAF50"
+                    android:textSize="12sp"
+                    android:layout_marginTop="6dp"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Stat Cards Row 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:paddingBottom="0dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="6dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="2dp">
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" android:padding="14dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Expenses" android:textColor="#757575" android:textSize="12sp"/>
+                    <TextView android:id="@+id/tvExpenseCount"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="0" android:textColor="#5C6BC0"
+                        android:textSize="24sp" android:textStyle="bold" android:layout_marginTop="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="2dp">
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" android:padding="14dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Food Logs" android:textColor="#757575" android:textSize="12sp"/>
+                    <TextView android:id="@+id/tvFoodCount"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="0" android:textColor="#26A69A"
+                        android:textSize="24sp" android:textStyle="bold" android:layout_marginTop="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <!-- Stat Cards Row 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="10dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="6dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="2dp">
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" android:padding="14dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Shopping" android:textColor="#757575" android:textSize="12sp"/>
+                    <TextView android:id="@+id/tvShoppingCount"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="0" android:textColor="#FF7043"
+                        android:textSize="24sp" android:textStyle="bold" android:layout_marginTop="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="2dp">
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" android:padding="14dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Impulsive" android:textColor="#757575" android:textSize="12sp"/>
+                    <TextView android:id="@+id/tvImpulsivePct"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="0%" android:textColor="#7E57C2"
+                        android:textSize="24sp" android:textStyle="bold" android:layout_marginTop="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <!-- Action Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <Button android:id="@+id/btnExpenses"
+                android:layout_width="match_parent" android:layout_height="52dp"
+                android:backgroundTint="#5C6BC0" android:text="Track Expenses"
+                android:textColor="#FFFFFF" android:layout_marginBottom="10dp"/>
+
+            <Button android:id="@+id/btnFood"
+                android:layout_width="match_parent" android:layout_height="52dp"
+                android:backgroundTint="#26A69A" android:text="Log Food Habits"
+                android:textColor="#FFFFFF" android:layout_marginBottom="10dp"/>
+
+            <Button android:id="@+id/btnShopping"
+                android:layout_width="match_parent" android:layout_height="52dp"
+                android:backgroundTint="#FF7043" android:text="Shopping Tracker"
+                android:textColor="#FFFFFF" android:layout_marginBottom="10dp"/>
+
+            <Button android:id="@+id/btnInsights"
+                android:layout_width="match_parent" android:layout_height="52dp"
+                android:backgroundTint="#7E57C2" android:text="View Insights"
+                android:textColor="#FFFFFF" android:layout_marginBottom="16dp"/>
+
+            <Button
+                android:id="@+id/btnReset"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:backgroundTint="#B0BEC5"
+                android:text="Reset / Wipe Data"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="16dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

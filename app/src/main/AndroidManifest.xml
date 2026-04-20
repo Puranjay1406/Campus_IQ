@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="CampusIQ"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.CampusIq">
+
+        <!-- SplashActivity is the launcher -->
+        <activity
+            android:name=".ui.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.CampusIq.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ui.OnboardingActivity"
+            android:exported="false"
+            android:theme="@style/Theme.CampusIq.NoActionBar"/>
+
+        <activity android:name=".ui.MainActivity"
+            android:exported="false"
+            android:theme="@style/Theme.CampusIq.NoActionBar"/>
+
+        <activity android:name=".ui.expense.ExpenseActivity"  android:exported="false"/>
+        <activity android:name=".ui.expense.AddExpenseActivity" android:exported="false"/>
+        <activity android:name=".ui.food.FoodActivity"        android:exported="false"/>
+        <activity android:name=".ui.food.AddFoodActivity"     android:exported="false"/>
+        <activity android:name=".ui.shopping.ShoppingActivity"    android:exported="false"/>
+        <activity android:name=".ui.shopping.AddShoppingActivity" android:exported="false"/>
+        <activity android:name=".ui.insights.InsightsActivity"   android:exported="false"/>
+
+    </application>
+</manifest>
