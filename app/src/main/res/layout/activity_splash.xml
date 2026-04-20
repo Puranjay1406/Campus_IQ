@@ -3,36 +3,120 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#5C6BC0"
+    android:background="@drawable/bg_header_gradient"
     android:gravity="center"
     android:orientation="vertical">
 
-    <TextView
+    <!-- Icon Box -->
+    <androidx.cardview.widget.CardView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="16dp"
+        app:cardBackgroundColor="#252547">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <!-- Bar chart simulation using views -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:gravity="bottom"
+                android:layout_marginBottom="4dp">
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="28dp"
+                    android:background="#6C63FF"
+                    android:layout_marginRight="4dp"/>
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="38dp"
+                    android:background="#FF6584"
+                    android:layout_marginRight="4dp"/>
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="48dp"
+                    android:background="#00BFA5"
+                    android:layout_marginRight="4dp"/>
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="32dp"
+                    android:background="#FF9F43"/>
+            </LinearLayout>
+
+            <!-- Divider line under bars -->
+            <View
+                android:layout_width="60dp"
+                android:layout_height="1.5dp"
+                android:background="#3E3E6E"/>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Wordmark -->
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="&#128202;"
-        android:textSize="72sp" />
+        android:orientation="horizontal"
+        android:layout_marginTop="24dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="CampusIQ"
-        android:textColor="#FFFFFF"
-        android:textSize="36sp"
-        android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Campus"
+            android:textColor="#FFFFFF"
+            android:textSize="40sp"
+            android:textStyle="bold"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IQ"
+            android:textColor="#A78BFA"
+            android:textSize="40sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <!-- Tagline -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Student Lifestyle Intelligence"
-        android:textColor="#C5CAE9"
-        android:textSize="14sp" />
+        android:textColor="#6B7280"
+        android:textSize="13sp"
+        android:letterSpacing="0.08"/>
 
+    <!-- Divider dot -->
+    <View
+        android:layout_width="40dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:background="#6C63FF"/>
+
+    <!-- Loader -->
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:indeterminateTint="#FFFFFF" />
+        android:indeterminateTint="#6C63FF"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Loading your dashboard..."
+        android:textColor="#6B7280"
+        android:textSize="12sp"/>
+
 </LinearLayout>

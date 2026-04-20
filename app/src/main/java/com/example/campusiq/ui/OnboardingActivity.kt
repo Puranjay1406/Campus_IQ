@@ -19,6 +19,8 @@ class OnboardingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_onboarding)
+        window.statusBarColor = android.graphics.Color.parseColor("#1A1A2E")
+        window.navigationBarColor = android.graphics.Color.parseColor("#F4F6FB")
 
         prefs      = PreferenceManager(this)
         etName     = findViewById(R.id.etName)

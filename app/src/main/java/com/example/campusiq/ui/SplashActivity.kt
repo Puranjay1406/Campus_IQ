@@ -12,6 +12,8 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+        window.statusBarColor = android.graphics.Color.parseColor("#1A1A2E")
+        window.navigationBarColor = android.graphics.Color.parseColor("#1A1A2E")
 
         val prefs = PreferenceManager(this)
 

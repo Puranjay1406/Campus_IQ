@@ -4,118 +4,223 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F3F4F6"
+    android:background="@color/colorBackground"
     android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent" android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar" android:layout_width="match_parent"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#7E57C2"
-            app:title="Insights" app:titleTextColor="#FFFFFF"/>
+            android:background="@drawable/bg_header_gradient"
+            app:title="Insights"
+            app:titleTextColor="#FFFFFF"/>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
-        <LinearLayout android:layout_width="match_parent"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" android:padding="12dp">
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <!-- Budget Card -->
-            <androidx.cardview.widget.CardView android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:layout_marginBottom="12dp"
-                app:cardCornerRadius="12dp" app:cardElevation="3dp">
-                <LinearLayout android:layout_width="match_parent"
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="@color/colorSurface">
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" android:padding="16dp">
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="Budget Overview" android:textColor="#212121"
-                        android:textSize="16sp" android:textStyle="bold"/>
-                    <TextView android:id="@+id/tvTotalSpent"
-                        android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="Rs.0" android:textColor="#5C6BC0"
-                        android:textSize="28sp" android:textStyle="bold" android:layout_marginTop="8dp"/>
-                    <ProgressBar android:id="@+id/progressBudget"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="BUDGET OVERVIEW"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.12"/>
+
+                    <TextView
+                        android:id="@+id/tvTotalSpent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rs.0"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="32sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="8dp"/>
+
+                    <ProgressBar
+                        android:id="@+id/progressBudget"
                         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                        android:layout_width="match_parent" android:layout_height="10dp"
-                        android:layout_marginTop="8dp" android:max="100"
-                        android:progressTint="#5C6BC0"/>
-                    <TextView android:id="@+id/tvBudgetStatus"
-                        android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="Loading..." android:textColor="#757575"
-                        android:textSize="13sp" android:layout_marginTop="8dp"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_marginTop="12dp"
+                        android:max="100"
+                        android:progressTint="@color/colorPrimary"
+                        android:progressBackgroundTint="#E5E7EB"/>
+
+                    <TextView
+                        android:id="@+id/tvBudgetStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Loading..."
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="13sp"
+                        android:layout_marginTop="10dp"
+                        android:lineSpacingExtra="4dp"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <!-- Top Category Card -->
-            <androidx.cardview.widget.CardView android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:layout_marginBottom="12dp"
-                app:cardCornerRadius="12dp" app:cardElevation="3dp">
-                <LinearLayout android:layout_width="match_parent"
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="@color/colorExpenseTint">
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" android:padding="16dp">
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="Top Expense Category" android:textColor="#212121"
-                        android:textSize="16sp" android:textStyle="bold"/>
-                    <TextView android:id="@+id/tvTopCategory"
-                        android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="No data yet" android:textColor="#FF7043"
-                        android:textSize="16sp" android:textStyle="bold" android:layout_marginTop="8dp"/>
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TOP EXPENSE CATEGORY"
+                        android:textColor="@color/colorExpense"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.12"/>
+
+                    <TextView
+                        android:id="@+id/tvTopCategory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No data yet"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="8dp"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <!-- Food Card -->
-            <androidx.cardview.widget.CardView android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:layout_marginBottom="12dp"
-                app:cardCornerRadius="12dp" app:cardElevation="3dp">
-                <LinearLayout android:layout_width="match_parent"
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="@color/colorFoodTint">
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" android:padding="16dp">
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="Food Habits" android:textColor="#212121"
-                        android:textSize="16sp" android:textStyle="bold"/>
-                    <TextView android:id="@+id/tvFoodInsight"
-                        android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="No food data yet" android:textColor="#424242"
-                        android:textSize="14sp" android:layout_marginTop="8dp"
-                        android:lineSpacingExtra="4dp"/>
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="FOOD HABITS"
+                        android:textColor="@color/colorFood"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.12"/>
+
+                    <TextView
+                        android:id="@+id/tvFoodInsight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No food data yet"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="14sp"
+                        android:layout_marginTop="8dp"
+                        android:lineSpacingExtra="6dp"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <!-- Shopping Card -->
-            <androidx.cardview.widget.CardView android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:layout_marginBottom="12dp"
-                app:cardCornerRadius="12dp" app:cardElevation="3dp">
-                <LinearLayout android:layout_width="match_parent"
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="@color/colorShoppingTint">
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" android:padding="16dp">
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="Shopping Behavior" android:textColor="#212121"
-                        android:textSize="16sp" android:textStyle="bold"/>
-                    <TextView android:id="@+id/tvShoppingInsight"
-                        android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="No shopping data yet" android:textColor="#424242"
-                        android:textSize="14sp" android:layout_marginTop="8dp"
-                        android:lineSpacingExtra="4dp"/>
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SHOPPING BEHAVIOR"
+                        android:textColor="@color/colorShopping"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.12"/>
+
+                    <TextView
+                        android:id="@+id/tvShoppingInsight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No shopping data yet"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="14sp"
+                        android:layout_marginTop="8dp"
+                        android:lineSpacingExtra="6dp"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Suggestions Card -->
-            <androidx.cardview.widget.CardView android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:layout_marginBottom="12dp"
-                app:cardCornerRadius="12dp" app:cardElevation="3dp"
-                app:cardBackgroundColor="#EDE7F6">
-                <LinearLayout android:layout_width="match_parent"
+            <!-- Smart Suggestions Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="@color/colorInsightsTint">
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" android:padding="16dp">
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="Smart Suggestions" android:textColor="#7E57C2"
-                        android:textSize="16sp" android:textStyle="bold"/>
-                    <TextView android:id="@+id/tvSuggestions"
-                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SMART SUGGESTIONS"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.12"/>
+
+                    <TextView
+                        android:id="@+id/tvSuggestions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="Add more data to get insights!"
-                        android:textColor="#4A148C" android:textSize="14sp"
-                        android:layout_marginTop="8dp" android:lineSpacingExtra="4dp"/>
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="14sp"
+                        android:layout_marginTop="8dp"
+                        android:lineSpacingExtra="6dp"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

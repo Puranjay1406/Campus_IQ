@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F3F4F6">
+    android:background="@color/colorBackground">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#26A69A"
+            android:background="@drawable/bg_header_gradient"
             app:title="Food Habit Tracker"
             app:titleTextColor="#FFFFFF"/>
     </com.google.android.material.appbar.AppBarLayout>
@@ -27,14 +27,17 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="3dp">
+            android:layout_margin="16dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="6dp"
+            app:cardBackgroundColor="@color/colorSurface">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="16dp">
+                android:padding="20dp">
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -43,18 +46,27 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Total Food Spending"
-                        android:textColor="#757575"
-                        android:textSize="12sp"/>
+                        android:text="TOTAL FOOD SPEND"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="10sp"
+                        android:letterSpacing="0.12"/>
                     <TextView
                         android:id="@+id/tvTotal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rs.0"
-                        android:textColor="#26A69A"
-                        android:textSize="20sp"
-                        android:textStyle="bold"/>
+                        android:textColor="@color/colorFood"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp"/>
                 </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorDivider"
+                    android:layout_marginHorizontal="16dp"/>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -63,17 +75,19 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Outside Eating"
-                        android:textColor="#757575"
-                        android:textSize="12sp"/>
+                        android:text="OUTSIDE EATING"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="10sp"
+                        android:letterSpacing="0.12"/>
                     <TextView
                         android:id="@+id/tvOutside"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0% outside"
-                        android:textColor="#FF7043"
-                        android:textSize="16sp"
-                        android:textStyle="bold"/>
+                        android:text="0%"
+                        android:textColor="@color/colorShopping"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp"/>
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -83,10 +97,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="32dp"
-            android:text="No food entries yet. Tap + to log a meal!"
-            android:textColor="#BDBDBD"
+            android:padding="40dp"
+            android:text="No food entries yet&#10;Tap + to log a meal!"
+            android:textColor="@color/colorTextHint"
             android:textSize="14sp"
+            android:lineSpacingExtra="6dp"
             android:visibility="gone"/>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -94,7 +109,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:padding="8dp"/>
+            android:paddingBottom="80dp"
+            android:clipToPadding="false"/>
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -103,7 +119,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:backgroundTint="#26A69A"
+        android:backgroundTint="@color/colorFood"
         android:contentDescription="Add Food"
         app:srcCompat="@android:drawable/ic_input_add"/>
 

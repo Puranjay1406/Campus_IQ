@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F3F4F6">
+    android:background="@color/colorBackground">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#5C6BC0"
+            android:background="@drawable/bg_header_gradient"
             app:title="Expense Tracker"
             app:titleTextColor="#FFFFFF"/>
     </com.google.android.material.appbar.AppBarLayout>
@@ -24,38 +24,85 @@
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+        <!-- Summary Card -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            app:cardCornerRadius="10dp" app:cardElevation="3dp">
-            <LinearLayout android:layout_width="match_parent"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="6dp"
+            app:cardBackgroundColor="@color/colorSurface">
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" android:padding="16dp">
-                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
-                    android:layout_weight="1" android:orientation="vertical">
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="Total Expenses" android:textColor="#757575" android:textSize="12sp"/>
-                    <TextView android:id="@+id/tvTotal" android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:text="Rs.0"
-                        android:textColor="#5C6BC0" android:textSize="20sp" android:textStyle="bold"/>
+                android:orientation="horizontal"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TOTAL SPENT"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="10sp"
+                        android:letterSpacing="0.12"/>
+                    <TextView
+                        android:id="@+id/tvTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rs.0"
+                        android:textColor="@color/colorExpense"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp"/>
                 </LinearLayout>
-                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
-                    android:layout_weight="1" android:orientation="vertical">
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="Top Category" android:textColor="#757575" android:textSize="12sp"/>
-                    <TextView android:id="@+id/tvTopCategory" android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:text="None"
-                        android:textColor="#FF7043" android:textSize="16sp" android:textStyle="bold"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorDivider"
+                    android:layout_marginHorizontal="16dp"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TOP CATEGORY"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="10sp"
+                        android:letterSpacing="0.12"/>
+                    <TextView
+                        android:id="@+id/tvTopCategory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="None"
+                        android:textColor="@color/colorShopping"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp"/>
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <TextView android:id="@+id/tvEmpty"
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:gravity="center" android:padding="32dp"
-            android:text="No expenses yet. Tap + to add one!"
-            android:textColor="#BDBDBD" android:textSize="14sp"
+        <TextView
+            android:id="@+id/tvEmpty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="40dp"
+            android:text="No expenses yet&#10;Tap + to add one!"
+            android:textColor="@color/colorTextHint"
+            android:textSize="14sp"
+            android:lineSpacingExtra="6dp"
             android:visibility="gone"/>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -63,7 +110,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:padding="8dp"/>
+            android:paddingBottom="80dp"
+            android:clipToPadding="false"/>
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -72,7 +120,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:backgroundTint="#5C6BC0"
+        android:backgroundTint="@color/colorExpense"
         android:contentDescription="Add Expense"
         app:srcCompat="@android:drawable/ic_input_add"/>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

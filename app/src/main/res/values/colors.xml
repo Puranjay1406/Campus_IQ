@@ -1,12 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#5C6BC0</color>
-    <color name="colorPrimaryDark">#3949AB</color>
-    <color name="colorAccent">#FF7043</color>
-    <color name="colorBackground">#F3F4F6</color>
-    <color name="colorFood">#26A69A</color>
-    <color name="colorShopping">#FF7043</color>
-    <color name="colorInsights">#7E57C2</color>
+    <!-- Base -->
+    <color name="colorBackground">#F4F6FB</color>
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorNavy">#1A1A2E</color>
+    <color name="colorNavyLight">#16213E</color>
+
+    <!-- Primary -->
+    <color name="colorPrimary">#6C63FF</color>
+    <color name="colorPrimaryDark">#4B44CC</color>
+    <color name="colorAccent">#FF6584</color>
+
+    <!-- Module colors -->
+    <color name="colorExpense">#FF6B6B</color>
+    <color name="colorFood">#00BFA5</color>
+    <color name="colorShopping">#FF9F43</color>
+    <color name="colorInsights">#A78BFA</color>
+
+    <!-- Text -->
+    <color name="colorTextPrimary">#1A1A2E</color>
+    <color name="colorTextSecondary">#6B7280</color>
+    <color name="colorTextHint">#9CA3AF</color>
+
+    <!-- Utility -->
+    <color name="colorSuccess">#10B981</color>
+    <color name="colorWarning">#F59E0B</color>
+    <color name="colorError">#EF4444</color>
+    <color name="colorDivider">#E5E7EB</color>
     <color name="white">#FFFFFF</color>
-    <color name="black">#FF000000</color>
+    <color name="black">#000000</color>
+
+    <!-- Card tints (light backgrounds for stat cards) -->
+    <color name="colorExpenseTint">#FFF0F0</color>
+    <color name="colorFoodTint">#E6FAF7</color>
+    <color name="colorShoppingTint">#FFF5E6</color>
+    <color name="colorInsightsTint">#F3F0FF</color>
 </resources>

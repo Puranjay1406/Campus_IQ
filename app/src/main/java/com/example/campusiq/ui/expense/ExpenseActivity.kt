@@ -23,6 +23,10 @@ class ExpenseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_expense)
+        // Makes status bar match the dark header
+        window.statusBarColor = android.graphics.Color.parseColor("#1A1A2E")
+        // Makes navigation bar match the page background
+        window.navigationBarColor = android.graphics.Color.parseColor("#F4F6FB")
 
         db = DatabaseHelper(this)
 
