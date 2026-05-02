@@ -5,14 +5,14 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.campusiq.R
-import com.example.campusiq.data.DatabaseHelper
+import com.example.campusiq.data.FirestoreHelper
 import com.example.campusiq.data.models.Expense
 import java.text.SimpleDateFormat
 import java.util.*
 
 class AddExpenseActivity : AppCompatActivity() {
 
-    private lateinit var db: DatabaseHelper
+    private lateinit var fs: FirestoreHelper
     private lateinit var etAmount: EditText
     private lateinit var etDesc: EditText
     private lateinit var spinner: Spinner
@@ -26,8 +26,10 @@ class AddExpenseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_expense)
+        window.statusBarColor = android.graphics.Color.parseColor("#1A1A2E")
+        window.navigationBarColor = android.graphics.Color.parseColor("#F4F6FB")
 
-        db = DatabaseHelper(this)
+        fs = FirestoreHelper()
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -53,18 +55,21 @@ class AddExpenseActivity : AppCompatActivity() {
         if (amt == null || amt <= 0) { etAmount.error = "Enter valid amount"; return }
 
         val date = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
-        val result = db.insertExpense(Expense(
+        fs.insertExpense(Expense(
             amount      = amt,
             category    = spinner.selectedItem.toString(),
             description = etDesc.text.toString().trim(),
             date        = date,
             isImpulsive = chkImpulsive.isChecked
-        ))
-        if (result != -1L) {
-            Toast.makeText(this, "Expense saved!", Toast.LENGTH_SHORT).show()
-            finish()
-        } else {
-            Toast.makeText(this, "Failed to save", Toast.LENGTH_SHORT).show()
+        )) { success ->
+            runOnUiThread {
+                if (success) {
+                    Toast.makeText(this, "Expense saved!", Toast.LENGTH_SHORT).show()
+                    finish()
+                } else {
+                    Toast.makeText(this, "Failed to save", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 }

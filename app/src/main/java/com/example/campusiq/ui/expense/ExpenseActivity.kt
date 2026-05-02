@@ -9,12 +9,12 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.campusiq.R
-import com.example.campusiq.data.DatabaseHelper
+import com.example.campusiq.data.FirestoreHelper
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ExpenseActivity : AppCompatActivity() {
 
-    private lateinit var db: DatabaseHelper
+    private lateinit var fs: FirestoreHelper
     private lateinit var rvExpenses: RecyclerView
     private lateinit var tvEmpty: TextView
     private lateinit var tvTotal: TextView
@@ -23,12 +23,10 @@ class ExpenseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_expense)
-        // Makes status bar match the dark header
         window.statusBarColor = android.graphics.Color.parseColor("#1A1A2E")
-        // Makes navigation bar match the page background
         window.navigationBarColor = android.graphics.Color.parseColor("#F4F6FB")
 
-        db = DatabaseHelper(this)
+        fs = FirestoreHelper()
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -49,14 +47,25 @@ class ExpenseActivity : AppCompatActivity() {
     override fun onResume() { super.onResume(); loadData() }
 
     private fun loadData() {
-        val list = db.getAllExpenses()
-        tvEmpty.visibility    = if (list.isEmpty()) View.VISIBLE else View.GONE
-        rvExpenses.visibility = if (list.isEmpty()) View.GONE    else View.VISIBLE
-        rvExpenses.adapter    = ExpenseAdapter(list) { item ->
-            db.deleteExpense(item.id); loadData()
+        fs.getAllExpenses { list ->
+            runOnUiThread {
+                tvEmpty.visibility    = if (list.isEmpty()) View.VISIBLE else View.GONE
+                rvExpenses.visibility = if (list.isEmpty()) View.GONE    else View.VISIBLE
+                rvExpenses.adapter    = ExpenseAdapter(list) { item ->
+                    fs.deleteExpense(item.firestoreId) { loadData() }
+                }
+            }
         }
-        tvTotal.text = "Total: Rs." + String.format("%.2f", db.getTotalExpense())
-        val top = db.getExpenseByCategory().maxByOrNull { it.value }
-        tvTopCat.text = top?.key ?: "None"
+        fs.getTotalExpense { total ->
+            runOnUiThread {
+                tvTotal.text = "Rs." + String.format("%.2f", total)
+            }
+        }
+        fs.getExpenseByCategory { map ->
+            runOnUiThread {
+                val top = map.maxByOrNull { it.value }
+                tvTopCat.text = top?.key ?: "None"
+            }
+        }
     }
 }

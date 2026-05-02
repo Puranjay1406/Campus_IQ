@@ -9,12 +9,12 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.campusiq.R
-import com.example.campusiq.data.DatabaseHelper
+import com.example.campusiq.data.FirestoreHelper
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ShoppingActivity : AppCompatActivity() {
 
-    private lateinit var db: DatabaseHelper
+    private lateinit var fs: FirestoreHelper
     private lateinit var rvShopping: RecyclerView
     private lateinit var tvEmpty: TextView
     private lateinit var tvTotal: TextView
@@ -23,11 +23,10 @@ class ShoppingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shopping)
-        // Makes status bar match the dark header
         window.statusBarColor = android.graphics.Color.parseColor("#1A1A2E")
-        // Makes navigation bar match the page background
         window.navigationBarColor = android.graphics.Color.parseColor("#F4F6FB")
-        db = DatabaseHelper(this)
+
+        fs = FirestoreHelper()
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -48,15 +47,18 @@ class ShoppingActivity : AppCompatActivity() {
     override fun onResume() { super.onResume(); loadData() }
 
     private fun loadData() {
-        val list = db.getAllShoppingItems()
-        tvEmpty.visibility    = if (list.isEmpty()) View.VISIBLE else View.GONE
-        rvShopping.visibility = if (list.isEmpty()) View.GONE    else View.VISIBLE
-        rvShopping.adapter    = ShoppingAdapter(list) { item ->
-            db.deleteShoppingItem(item.id); loadData()
+        fs.getAllShoppingItems { list ->
+            runOnUiThread {
+                tvEmpty.visibility    = if (list.isEmpty()) View.VISIBLE else View.GONE
+                rvShopping.visibility = if (list.isEmpty()) View.GONE    else View.VISIBLE
+                rvShopping.adapter    = ShoppingAdapter(list) { item ->
+                    fs.deleteShoppingItem(item.firestoreId) { loadData() }
+                }
+                val total        = list.sumOf { it.amount }
+                tvTotal.text     = "Rs." + String.format("%.2f", total)
+                val impCount     = list.count { !it.isPlanned }
+                tvImpulsive.text = "$impCount impulsive purchases"
+            }
         }
-        val total      = list.sumOf { it.amount }
-        tvTotal.text   = "Total: Rs." + String.format("%.2f", total)
-        val impCount   = list.count { !it.isPlanned }
-        tvImpulsive.text = "$impCount impulsive purchases"
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -25,6 +26,18 @@
             android:theme="@style/Theme.CampusIq.NoActionBar"/>
 
         <activity android:name=".ui.MainActivity"
+            android:exported="false"
+            android:theme="@style/Theme.CampusIq.NoActionBar"/>
+
+        <activity android:name=".ui.auth.LoginActivity"
+            android:exported="false"
+            android:theme="@style/Theme.CampusIq.NoActionBar"/>
+
+        <activity android:name=".ui.auth.SignupActivity"
+            android:exported="false"
+            android:theme="@style/Theme.CampusIq.NoActionBar"/>
+
+        <activity android:name=".ui.ProfileActivity"
             android:exported="false"
             android:theme="@style/Theme.CampusIq.NoActionBar"/>
 

@@ -19,6 +19,7 @@ class OnboardingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_onboarding)
+
         window.statusBarColor = android.graphics.Color.parseColor("#1A1A2E")
         window.navigationBarColor = android.graphics.Color.parseColor("#F4F6FB")
 
@@ -55,7 +56,6 @@ class OnboardingActivity : AppCompatActivity() {
         prefs.monthlyBudget = budget
         prefs.hostelName    = etHostel.text.toString().trim()
         prefs.semester      = spinnerSem.selectedItemPosition + 1
-        prefs.isOnboarded   = true
 
         startActivity(Intent(this, MainActivity::class.java))
         finish()

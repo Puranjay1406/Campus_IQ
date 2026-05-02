@@ -5,30 +5,32 @@ import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.campusiq.R
-import com.example.campusiq.data.DatabaseHelper
+import com.example.campusiq.data.FirestoreHelper
 import com.example.campusiq.ui.expense.ExpenseActivity
 import com.example.campusiq.ui.food.FoodActivity
 import com.example.campusiq.ui.insights.InsightsActivity
 import com.example.campusiq.ui.shopping.ShoppingActivity
 import com.example.campusiq.utils.PreferenceManager
-import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var db: DatabaseHelper
     private lateinit var prefs: PreferenceManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        // Makes status bar match the dark header
+
         window.statusBarColor = android.graphics.Color.parseColor("#1A1A2E")
-       // Makes navigation bar match the page background
         window.navigationBarColor = android.graphics.Color.parseColor("#F4F6FB")
 
-        db    = DatabaseHelper(this)
         prefs = PreferenceManager(this)
 
+        // Profile icon
+        findViewById<TextView>(R.id.btnProfile).setOnClickListener {
+            startActivity(Intent(this, ProfileActivity::class.java))
+        }
+
+        // Feature buttons
         findViewById<Button>(R.id.btnExpenses).setOnClickListener {
             startActivity(Intent(this, ExpenseActivity::class.java))
         }
@@ -54,53 +56,59 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<TextView>(R.id.tvGreeting).text = "Hello, $name!"
         findViewById<TextView>(R.id.tvBudgetLabel).text =
-            "Budget: Rs." + String.format("%.0f", budget)
+            "Rs." + String.format("%.0f", budget)
 
-        val totalSpent = db.getTotalExpense() + db.getTotalFoodCost()
-        val progress   = if (budget > 0)
-            ((totalSpent / budget) * 100).roundToInt().coerceAtMost(100) else 0
+        val fs = FirestoreHelper()
 
-        findViewById<ProgressBar>(R.id.progressBudget).progress = progress
-        findViewById<TextView>(R.id.tvTotalSpent).text =
-            "Spent: Rs." + String.format("%.0f", totalSpent)
+        fs.getAllExpenses { expenses ->
+            fs.getTotalExpense { expTotal ->
+                fs.getTotalFoodCost { foodTotal ->
+                    fs.getAllFoodEntries { foodList ->
+                        fs.getAllShoppingItems { shopping ->
+                            runOnUiThread {
+                                val totalSpent = expTotal + foodTotal
+                                val progress   = if (budget > 0)
+                                    ((totalSpent / budget) * 100)
+                                        .toInt()
+                                        .coerceAtMost(100)
+                                else 0
 
-        val remaining  = budget - totalSpent
-        val remView    = findViewById<TextView>(R.id.tvRemaining)
-        remView.text   = if (remaining >= 0)
-            "Rs." + String.format("%.0f", remaining) + " remaining"
-        else "Over budget by Rs." + String.format("%.0f", -remaining)
-        remView.setTextColor(
-            if (remaining >= 0) getColor(android.R.color.holo_green_dark)
-            else getColor(android.R.color.holo_red_dark)
-        )
+                                findViewById<ProgressBar>(R.id.progressBudget)
+                                    .progress = progress
 
-        val shopping       = db.getAllShoppingItems()
-        val impulsiveCount = shopping.count { !it.isPlanned }
-        val impPct         = if (shopping.isNotEmpty())
-            impulsiveCount * 100 / shopping.size else 0
+                                findViewById<TextView>(R.id.tvTotalSpent).text =
+                                    "Rs." + String.format("%.0f", totalSpent) + " spent"
 
-        findViewById<TextView>(R.id.tvExpenseCount).text  = db.getAllExpenses().size.toString()
-        findViewById<TextView>(R.id.tvFoodCount).text     = db.getAllFoodEntries().size.toString()
-        findViewById<TextView>(R.id.tvShoppingCount).text = shopping.size.toString()
-        findViewById<TextView>(R.id.tvImpulsivePct).text  = "$impPct%"
+                                val remaining = budget - totalSpent
+                                val remView   = findViewById<TextView>(R.id.tvRemaining)
+                                remView.text  = if (remaining >= 0)
+                                    "Rs." + String.format("%.0f", remaining) + " remaining"
+                                else
+                                    "Over budget by Rs." + String.format("%.0f", -remaining)
+                                remView.setTextColor(
+                                    if (remaining >= 0)
+                                        getColor(android.R.color.holo_green_dark)
+                                    else
+                                        getColor(android.R.color.holo_red_dark)
+                                )
 
-        findViewById<Button>(R.id.btnReset).setOnClickListener {
-            // Clear SharedPreferences
-            prefs.isOnboarded = false
-            prefs.studentName = ""
-            prefs.monthlyBudget = 5000f
-            prefs.hostelName = ""
-            prefs.semester = 1
+                                val impPct = if (shopping.isNotEmpty())
+                                    shopping.count { !it.isPlanned } * 100 / shopping.size
+                                else 0
 
-            // Clear all SQLite tables
-            val dbHelper = DatabaseHelper(this)
-            dbHelper.writableDatabase.execSQL("DELETE FROM expenses")
-            dbHelper.writableDatabase.execSQL("DELETE FROM food_entries")
-            dbHelper.writableDatabase.execSQL("DELETE FROM shopping_items")
-
-            // Go back to onboarding
-            startActivity(Intent(this, OnboardingActivity::class.java))
-            finish()
+                                findViewById<TextView>(R.id.tvExpenseCount).text =
+                                    expenses.size.toString()
+                                findViewById<TextView>(R.id.tvFoodCount).text =
+                                    foodList.size.toString()
+                                findViewById<TextView>(R.id.tvShoppingCount).text =
+                                    shopping.size.toString()
+                                findViewById<TextView>(R.id.tvImpulsivePct).text =
+                                    "$impPct%"
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -5,14 +5,14 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.campusiq.R
-import com.example.campusiq.data.DatabaseHelper
+import com.example.campusiq.data.FirestoreHelper
 import com.example.campusiq.data.models.ShoppingItem
 import java.text.SimpleDateFormat
 import java.util.*
 
 class AddShoppingActivity : AppCompatActivity() {
 
-    private lateinit var db: DatabaseHelper
+    private lateinit var fs: FirestoreHelper
     private lateinit var etName: EditText
     private lateinit var etAmount: EditText
     private lateinit var spinner: Spinner
@@ -26,7 +26,10 @@ class AddShoppingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_shopping)
-        db = DatabaseHelper(this)
+        window.statusBarColor = android.graphics.Color.parseColor("#1A1A2E")
+        window.navigationBarColor = android.graphics.Color.parseColor("#F4F6FB")
+
+        fs = FirestoreHelper()
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -55,12 +58,20 @@ class AddShoppingActivity : AppCompatActivity() {
 
         val isPlanned = radioGroup.checkedRadioButtonId == R.id.rbPlanned
         val date      = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
-        val result    = db.insertShoppingItem(ShoppingItem(
+
+        fs.insertShoppingItem(ShoppingItem(
             itemName  = name, amount = amt,
             category  = spinner.selectedItem.toString(),
             isPlanned = isPlanned, date = date
-        ))
-        if (result != -1L) { Toast.makeText(this, "Item saved!", Toast.LENGTH_SHORT).show(); finish() }
-        else Toast.makeText(this, "Failed to save", Toast.LENGTH_SHORT).show()
+        )) { success ->
+            runOnUiThread {
+                if (success) {
+                    Toast.makeText(this, "Item saved!", Toast.LENGTH_SHORT).show()
+                    finish()
+                } else {
+                    Toast.makeText(this, "Failed to save", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 }
