@@ -4,15 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.campusiq.R
 import com.example.campusiq.data.FirestoreHelper
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.example.campusiq.ui.BaseActivity
 
-class ExpenseActivity : AppCompatActivity() {
+class ExpenseActivity : BaseActivity() {
 
     private lateinit var fs: FirestoreHelper
     private lateinit var rvExpenses: RecyclerView
@@ -23,6 +23,8 @@ class ExpenseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_expense)
+        enableImmersiveMode()
+
         window.statusBarColor = android.graphics.Color.parseColor("#1A1A2E")
         window.navigationBarColor = android.graphics.Color.parseColor("#F4F6FB")
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
@@ -10,14 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CampusIq">
 
-        <!-- SplashActivity is the launcher -->
         <activity
             android:name=".ui.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.CampusIq.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
@@ -25,7 +25,11 @@
             android:exported="false"
             android:theme="@style/Theme.CampusIq.NoActionBar"/>
 
-        <activity android:name=".ui.MainActivity"
+        <activity android:name=".ui.HomeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.CampusIq.NoActionBar"/>
+
+        <activity android:name=".ui.ProfileActivity"
             android:exported="false"
             android:theme="@style/Theme.CampusIq.NoActionBar"/>
 
@@ -37,17 +41,18 @@
             android:exported="false"
             android:theme="@style/Theme.CampusIq.NoActionBar"/>
 
-        <activity android:name=".ui.ProfileActivity"
+        <activity android:name=".ui.expense.ExpenseActivity"
+            android:exported="false"/>
+
+        <activity android:name=".ui.expense.AddExpenseActivity"
+            android:exported="false"/>
+
+        <activity android:name=".ui.insights.InsightsActivity"
+            android:exported="false"/>
+
+        <activity android:name=".ui.chat.ChatActivity"
             android:exported="false"
             android:theme="@style/Theme.CampusIq.NoActionBar"/>
-
-        <activity android:name=".ui.expense.ExpenseActivity"  android:exported="false"/>
-        <activity android:name=".ui.expense.AddExpenseActivity" android:exported="false"/>
-        <activity android:name=".ui.food.FoodActivity"        android:exported="false"/>
-        <activity android:name=".ui.food.AddFoodActivity"     android:exported="false"/>
-        <activity android:name=".ui.shopping.ShoppingActivity"    android:exported="false"/>
-        <activity android:name=".ui.shopping.AddShoppingActivity" android:exported="false"/>
-        <activity android:name=".ui.insights.InsightsActivity"   android:exported="false"/>
 
     </application>
 </manifest>

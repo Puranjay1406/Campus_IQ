@@ -3,12 +3,11 @@ package com.example.campusiq.ui
 import android.content.Intent
 import android.os.Bundle
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
 import com.example.campusiq.R
 import com.example.campusiq.utils.PreferenceManager
 import com.example.campusiq.data.FirestoreHelper
 
-class OnboardingActivity : AppCompatActivity() {
+class OnboardingActivity : BaseActivity() {
 
     private lateinit var prefs: PreferenceManager
     private lateinit var etName: EditText
@@ -20,6 +19,7 @@ class OnboardingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_onboarding)
+        enableImmersiveMode()
 
         window.statusBarColor = android.graphics.Color.parseColor("#1A1A2E")
         window.navigationBarColor = android.graphics.Color.parseColor("#F4F6FB")
@@ -66,7 +66,7 @@ class OnboardingActivity : AppCompatActivity() {
         val fs = FirestoreHelper()
         fs.saveUserProfile(name, budget, hostel, semester) { _ -> }
 
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, HomeActivity::class.java))
         finish()
     }
 }

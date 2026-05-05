@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "654055951520",
+    "project_id": "campusiq-a74f0",
+    "storage_bucket": "campusiq-a74f0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:654055951520:android:b91a4b5d2e9f454dfc4dc5",
+        "android_client_info": {
+          "package_name": "com.example.campusiq"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCB3dRbayDJVviyKTPWAuT5K8ao9qlmUFs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -15,22 +15,61 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@drawable/bg_header_gradient"
-            app:title="Add Shopping Item"
+            app:title="My Profile"
             app:titleTextColor="#FFFFFF"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="20dp">
 
+            <!-- Avatar + Email Card -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="#1A1A2E">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="24dp">
+
+                    <!-- Avatar circle -->
+                    <TextView
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:background="#3D3D6B"
+                        android:gravity="center"
+                        android:text="👤"
+                        android:textSize="32sp"/>
+
+                    <TextView
+                        android:id="@+id/tvEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="email@example.com"
+                        android:textColor="#A78BFA"
+                        android:textSize="13sp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Edit Profile Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="6dp"
                 app:cardBackgroundColor="@color/colorSurface">
@@ -44,114 +83,107 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="ITEM NAME *"
-                        android:textColor="@color/colorShopping"
+                        android:text="EDIT PROFILE"
+                        android:textColor="@color/colorPrimary"
                         android:textSize="11sp"
                         android:textStyle="bold"
-                        android:letterSpacing="0.12"/>
-                    <EditText
-                        android:id="@+id/etItemName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="e.g. Notebook"
-                        android:inputType="text"
-                        android:textColor="@color/colorTextPrimary"
-                        android:textColorHint="@color/colorTextHint"
-                        android:textSize="16sp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="20dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="AMOUNT (RS.) *"
-                        android:textColor="@color/colorShopping"
-                        android:textSize="11sp"
-                        android:textStyle="bold"
-                        android:letterSpacing="0.12"/>
-                    <EditText
-                        android:id="@+id/etAmount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="e.g. 250"
-                        android:inputType="numberDecimal"
-                        android:textColor="@color/colorTextPrimary"
-                        android:textColorHint="@color/colorTextHint"
-                        android:textSize="18sp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="20dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="CATEGORY"
-                        android:textColor="@color/colorShopping"
-                        android:textSize="11sp"
-                        android:textStyle="bold"
-                        android:letterSpacing="0.12"/>
-                    <Spinner
-                        android:id="@+id/spinnerCategory"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="20dp"/>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/colorDivider"
+                        android:letterSpacing="0.12"
                         android:layout_marginBottom="16dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="PURCHASE TYPE"
-                        android:textColor="@color/colorShopping"
+                        android:text="FULL NAME"
+                        android:textColor="@color/colorPrimary"
                         android:textSize="11sp"
                         android:textStyle="bold"
-                        android:letterSpacing="0.12"
-                        android:layout_marginBottom="10dp"/>
-
-                    <RadioGroup
-                        android:id="@+id/radioGroupPlanned"
+                        android:letterSpacing="0.12"/>
+                    <EditText
+                        android:id="@+id/etName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:inputType="textPersonName"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textColorHint="@color/colorTextHint"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="20dp"/>
 
-                        <RadioButton
-                            android:id="@+id/rbPlanned"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Planned"
-                            android:textColor="@color/colorSuccess"
-                            android:textSize="14sp"
-                            android:buttonTint="@color/colorSuccess"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MONTHLY BUDGET (RS.)"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.12"/>
+                    <EditText
+                        android:id="@+id/etBudget"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textColorHint="@color/colorTextHint"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="20dp"/>
 
-                        <RadioButton
-                            android:id="@+id/rbImpulsive"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Impulsive"
-                            android:textColor="@color/colorShopping"
-                            android:textSize="14sp"
-                            android:buttonTint="@color/colorShopping"/>
-                    </RadioGroup>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="HOSTEL NAME"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.12"/>
+                    <EditText
+                        android:id="@+id/etHostel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorTextPrimary"
+                        android:textColorHint="@color/colorTextHint"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="20dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CURRENT SEMESTER"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.12"/>
+                    <Spinner
+                        android:id="@+id/spinnerSemester"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="8dp"/>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <!-- Save Button -->
             <Button
                 android:id="@+id/btnSave"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:backgroundTint="@color/colorShopping"
-                android:text="Save Item"
+                android:backgroundTint="#EF4444"
+                android:text="Save Changes"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginBottom="12dp"/>
+
+            <!-- Logout Button -->
+            <Button
+                android:id="@+id/btnLogout"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:backgroundTint="@color/colorError"
+                android:text="Logout"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="24dp"/>
 
         </LinearLayout>
     </ScrollView>

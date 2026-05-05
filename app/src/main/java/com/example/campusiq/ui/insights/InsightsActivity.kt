@@ -2,13 +2,13 @@ package com.example.campusiq.ui.insights
 
 import android.os.Bundle
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.campusiq.R
 import com.example.campusiq.data.FirestoreHelper
 import com.example.campusiq.utils.PreferenceManager
+import com.example.campusiq.ui.BaseActivity
 
-class InsightsActivity : AppCompatActivity() {
+class InsightsActivity : BaseActivity() {
 
     private lateinit var fs: FirestoreHelper
     private lateinit var prefs: PreferenceManager
@@ -16,6 +16,7 @@ class InsightsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_insights)
+        enableImmersiveMode()
 
         window.statusBarColor = android.graphics.Color.parseColor("#1A1A2E")
         window.navigationBarColor = android.graphics.Color.parseColor("#F4F6FB")
