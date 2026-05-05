@@ -6,6 +6,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.campusiq.R
 import com.example.campusiq.utils.PreferenceManager
+import com.example.campusiq.data.FirestoreHelper
 
 class OnboardingActivity : AppCompatActivity() {
 
@@ -52,10 +53,18 @@ class OnboardingActivity : AppCompatActivity() {
             return
         }
 
+        val hostel   = etHostel.text.toString().trim()
+        val semester = spinnerSem.selectedItemPosition + 1
+
+        // Save to SharedPreferences
         prefs.studentName   = name
         prefs.monthlyBudget = budget
-        prefs.hostelName    = etHostel.text.toString().trim()
-        prefs.semester      = spinnerSem.selectedItemPosition + 1
+        prefs.hostelName    = hostel
+        prefs.semester      = semester
+
+        // Also save to Firestore
+        val fs = FirestoreHelper()
+        fs.saveUserProfile(name, budget, hostel, semester) { _ -> }
 
         startActivity(Intent(this, MainActivity::class.java))
         finish()
