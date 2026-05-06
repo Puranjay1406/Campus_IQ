@@ -25,7 +25,8 @@ class HomeActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        enableImmersiveMode()
+        setStatusBarColor("#1A1A2E")
+        setNavBarColor("#1A1A2E")
 
         window.statusBarColor = android.graphics.Color.parseColor("#1A1A2E")
         window.navigationBarColor = android.graphics.Color.parseColor("#1A1A2E")

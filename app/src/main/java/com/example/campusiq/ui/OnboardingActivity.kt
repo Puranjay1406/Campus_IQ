@@ -19,7 +19,9 @@ class OnboardingActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_onboarding)
-        enableImmersiveMode()
+        setStatusBarColor("#1A1A2E")
+        setNavBarColor("#F4F6FB")
+        applySystemBarInsets(R.id.rootOnboarding)
 
         window.statusBarColor = android.graphics.Color.parseColor("#1A1A2E")
         window.navigationBarColor = android.graphics.Color.parseColor("#F4F6FB")

@@ -12,7 +12,8 @@ class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        enableImmersiveMode()
+        setStatusBarColor("#1A1A2E")
+        setNavBarColor("#F4F6FB")
 
         window.statusBarColor = android.graphics.Color.parseColor("#1A1A2E")
         window.navigationBarColor = android.graphics.Color.parseColor("#1A1A2E")
@@ -25,6 +26,6 @@ class SplashActivity : BaseActivity() {
                 startActivity(Intent(this, LoginActivity::class.java))
             }
             finish()
-        }, 2000)
+        }, 1000)
     }
 }

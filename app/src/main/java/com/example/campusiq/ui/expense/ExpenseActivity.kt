@@ -4,13 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.appcompat.widget.Toolbar
 import com.example.campusiq.R
 import com.example.campusiq.data.FirestoreHelper
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.example.campusiq.ui.BaseActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ExpenseActivity : BaseActivity() {
 
@@ -23,10 +23,9 @@ class ExpenseActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_expense)
-        enableImmersiveMode()
-
-        window.statusBarColor = android.graphics.Color.parseColor("#1A1A2E")
-        window.navigationBarColor = android.graphics.Color.parseColor("#F4F6FB")
+        setStatusBarColor("#1A1A2E")
+        setNavBarColor("#F4F6FB")
+        applySystemBarInsets(R.id.rootExpense)
 
         fs = FirestoreHelper()
 
@@ -35,9 +34,9 @@ class ExpenseActivity : BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toolbar.setNavigationOnClickListener { finish() }
 
-        tvEmpty   = findViewById(R.id.tvEmpty)
-        tvTotal   = findViewById(R.id.tvTotal)
-        tvTopCat  = findViewById(R.id.tvTopCategory)
+        tvEmpty    = findViewById(R.id.tvEmpty)
+        tvTotal    = findViewById(R.id.tvTotal)
+        tvTopCat   = findViewById(R.id.tvTopCategory)
         rvExpenses = findViewById(R.id.rvExpenses)
         rvExpenses.layoutManager = LinearLayoutManager(this)
 
@@ -46,7 +45,10 @@ class ExpenseActivity : BaseActivity() {
         }
     }
 
-    override fun onResume() { super.onResume(); loadData() }
+    override fun onResume() {
+        super.onResume()
+        loadData()
+    }
 
     private fun loadData() {
         fs.getAllExpenses { list ->

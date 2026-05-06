@@ -5,7 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="4dp">
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp">
 
     <TextView
         android:id="@+id/tvMessage"
@@ -14,6 +17,7 @@
         android:maxWidth="280dp"
         android:padding="12dp"
         android:textSize="14sp"
-        android:lineSpacingExtra="4dp"/>
+        android:lineSpacingExtra="4dp"
+        android:elevation="2dp"/>
 
 </LinearLayout>

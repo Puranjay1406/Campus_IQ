@@ -36,11 +36,11 @@ class ChatAdapter(
 
         if (msg.isUser) {
             h.container.gravity = Gravity.END
-            h.tvMessage.setBackgroundColor(Color.parseColor("#6C63FF"))
+            h.tvMessage.setBackgroundResource(R.drawable.bg_bubble_user)
             h.tvMessage.setTextColor(Color.WHITE)
         } else {
             h.container.gravity = Gravity.START
-            h.tvMessage.setBackgroundColor(Color.parseColor("#FFFFFF"))
+            h.tvMessage.setBackgroundResource(R.drawable.bg_bubble_ai)
             h.tvMessage.setTextColor(Color.parseColor("#1A1A2E"))
         }
     }

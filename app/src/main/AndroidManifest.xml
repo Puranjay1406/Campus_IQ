@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO"/>
 
     <application
         android:allowBackup="true"
@@ -9,8 +13,10 @@
         android:label="CampusIQ"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CampusIq">
+        android:theme="@style/Theme.CampusIq"
+        android:fitsSystemWindows="false">
 
+        <!-- Splash — launcher -->
         <activity
             android:name=".ui.SplashActivity"
             android:exported="true"
@@ -21,37 +27,63 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.OnboardingActivity"
+        <!-- Onboarding -->
+        <activity
+            android:name=".ui.OnboardingActivity"
             android:exported="false"
+            android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.CampusIq.NoActionBar"/>
 
-        <activity android:name=".ui.HomeActivity"
+        <!-- Home — bottom nav -->
+        <activity
+            android:name=".ui.HomeActivity"
             android:exported="false"
+            android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.CampusIq.NoActionBar"/>
 
-        <activity android:name=".ui.ProfileActivity"
+        <!-- Profile -->
+        <activity
+            android:name=".ui.ProfileActivity"
             android:exported="false"
+            android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.CampusIq.NoActionBar"/>
 
-        <activity android:name=".ui.auth.LoginActivity"
+        <!-- Auth -->
+        <activity
+            android:name=".ui.auth.LoginActivity"
             android:exported="false"
+            android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.CampusIq.NoActionBar"/>
 
-        <activity android:name=".ui.auth.SignupActivity"
+        <activity
+            android:name=".ui.auth.SignupActivity"
             android:exported="false"
+            android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.CampusIq.NoActionBar"/>
 
-        <activity android:name=".ui.expense.ExpenseActivity"
-            android:exported="false"/>
-
-        <activity android:name=".ui.expense.AddExpenseActivity"
-            android:exported="false"/>
-
-        <activity android:name=".ui.insights.InsightsActivity"
-            android:exported="false"/>
-
-        <activity android:name=".ui.chat.ChatActivity"
+        <!-- Expense -->
+        <activity
+            android:name=".ui.expense.ExpenseActivity"
             android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
+
+        <activity
+            android:name=".ui.expense.AddExpenseActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
+
+        <!-- Insights -->
+        <activity
+            android:name=".ui.insights.InsightsActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.CampusIq.NoActionBar"/>
+
+        <!-- Chat -->
+        <activity
+            android:name=".ui.chat.ChatActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.CampusIq.NoActionBar"/>
 
     </application>

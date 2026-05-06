@@ -37,34 +37,41 @@ class FoodFragment : Fragment() {
     }
 
     private fun openFoodChat() {
-        val menu = etMenu.text.toString().trim()
+        val typedMenu = etMenu.text.toString().trim()
 
         fs.getAllExpenses { expenses ->
-            val foodExpenses = expenses.filter {
-                it.category.equals("Food", ignoreCase = true)
+            val foodExpenses = expenses.filter { expense ->
+                expense.category.equals("Food", ignoreCase = true)
             }
-            val totalFood  = foodExpenses.sumOf { it.amount }
-            val budget     = prefs.monthlyBudget
+            val totalFood = foodExpenses.sumOf { expense -> expense.amount }
+            val budget    = prefs.monthlyBudget
 
-            val context = buildString {
-                appendLine("Student: ${prefs.studentName}")
-                appendLine("Monthly budget: Rs.$budget")
-                appendLine("Total food spend this month: Rs.$totalFood")
-                appendLine("Food entries: ${foodExpenses.size}")
-                if (menu.isNotEmpty()) {
-                    appendLine("Hostel weekly menu:")
-                    appendLine(menu)
-                }
-                appendLine("Recent food expenses:")
-                foodExpenses.take(5).forEach {
-                    appendLine("- ${it.category}: Rs.${it.amount} on ${it.date}")
+            val contextText = StringBuilder()
+            contextText.appendLine("Student: ${prefs.studentName}")
+            contextText.appendLine("Monthly budget: Rs.$budget")
+            contextText.appendLine("Total food spend this month: Rs.$totalFood")
+            contextText.appendLine("Food entries: ${foodExpenses.size}")
+
+            if (typedMenu.isNotEmpty()) {
+                contextText.appendLine("Hostel weekly menu:")
+                contextText.appendLine(typedMenu.take(600))
+            }
+
+            if (foodExpenses.isNotEmpty()) {
+                contextText.appendLine("Recent food expenses:")
+                for (expense in foodExpenses.take(5)) {
+                    val desc = if (expense.description.isNotEmpty())
+                        expense.description else expense.category
+                    contextText.appendLine(
+                        "- $desc: Rs.${expense.amount} on ${expense.date}"
+                    )
                 }
             }
 
             activity?.runOnUiThread {
                 val intent = Intent(requireContext(), ChatActivity::class.java).apply {
                     putExtra(ChatActivity.EXTRA_CHAT_TYPE, ChatActivity.TYPE_FOOD)
-                    putExtra(ChatActivity.EXTRA_CONTEXT_DATA, context)
+                    putExtra(ChatActivity.EXTRA_CONTEXT_DATA, contextText.toString())
                 }
                 startActivity(intent)
             }
